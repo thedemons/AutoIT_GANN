@@ -186,17 +186,18 @@ Func GANN_Evolve(ByRef $GANN)
 		$Kill = $IndexPop[$iAgent]
 		$Player = $IndexPop[$iAgent - $KillFrom]	 ; copy brain from this player
 
-;~ 		If $iAgent - $KillFrom = $KillFrom Then $Player = $IndexPop[0]
+		If $iAgent - $KillFrom = $KillFrom Then $Player = $IndexPop[0]
 
 		$Agent[ $Kill ] = NN_Mutate( $Agent[ $Player ], $iMutationRate) ; to this killed player and mutate that brain
 	Next
-	For $iAgent = 0 To $KillFrom - 1
 
-		If $Score[$iAgent] = $LastScore[$iAgent] Then
+	For $iAgent = 0 To $nAgents - 1;$KillFrom - 1
 
-			$index = $IndexPop[$iAgent]
-			$Agent[$index] = NN_Mutate( $Agent[$index] , $iMutationRate)
-		EndIf
+;~ 		If $Score[$iAgent] = $LastScore[$iAgent] Then
+
+;~ 			$index = $IndexPop[$iAgent]
+			$Agent[$iAgent] = NN_Mutate( $Agent[$iAgent] , $iMutationRate)
+;~ 		EndIf
 	Next
 ;~ 	MsgBox(0,"",UBound($Score))
 ;~ 	_ArrayDisplay($Score)
